@@ -10,7 +10,7 @@ div.name {
 }
 div.name div {
   display: inline-block;
-  font-size: 25rem;
+  font-size: 35vmin;
   color: rgba(255, 255, 255, 0.85);
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
