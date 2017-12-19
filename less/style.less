@@ -1,0 +1,63 @@
+
+body,html{
+  font-family: 'Raleway', sans-serif;
+  height:100vh;
+  width:100vw;
+  overflow:hidden;
+}
+div.name {
+  display: table;
+}
+div.name div{
+  display:inline-block;
+  font-size:25rem;
+  color:rgba(255,255,255,0.85);
+  transition:all 0.3s linear;
+}
+#bgContainer{
+  width:100vw;
+  height:100vh;
+  background-color:red;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide{
+  position:absolute;
+  height:110vw;
+  width:110vw;
+  transform:translatey(130vw) rotate(45deg);
+  transition:all 0.7s cubic-bezier(0.4, 0.0, 1, 1);
+}
+#maintext{
+  z-index:2000;
+  display:none;
+}
+.slide.animated.withShadow{
+  box-shadow: 0px 0px 22px 1px rgba(0,0,0,0.75);
+}
+
+@slides: 5;
+.slide-loop (@i) when (@i > 0) {
+   @temp: @i;
+   @temp2: @i;
+  
+    .slide:nth-child(@{i}) {
+      @temp: (@i/18);
+      background-color:~" rgba(255,255,255,@{temp} )";
+    }
+    .animated.slide:nth-child(@{i}) {
+      @temp: (@i/13)+0.5;
+      transition-delay:~" @{temp}s ";
+      @temp2:100 - @i *13;
+      transform:translatey(~"@{temp2}vw ") rotate(45deg);
+      
+    }
+  .animate-@{i}{
+    @temp2:100 -( @i *17);
+    transform:translatey(~"@{temp2}vh");
+  }
+    .slide-loop(@i - 1);
+}
+.slide-loop(@slides);
